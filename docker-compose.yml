@@ -1,0 +1,32 @@
+version: '3'
+services:
+  nginx_front:
+    image: nginx:stable
+    ports:
+      - "3000:80"
+    depends_on:
+      - web
+    volumes:
+      - ./nginx_front/default.conf:/etc/nginx/conf.d/default.conf
+      - ./web:/var/www/web
+
+  web:
+    build: ./docker_front
+    volumes:
+      - ./web:/var/www/web
+
+  nginx_back:
+    image: nginx:stable
+    ports:
+      - "3001:80"
+    depends_on:
+      - server
+    volumes:
+      - ./nginx_back/default.conf:/etc/nginx/conf.d/default.conf
+      - ./server:/var/www/server
+
+  server:
+    build: ./docker_back
+    volumes:
+      - ./server:/var/www/server
+    command: ./gradlew clean bootRun
