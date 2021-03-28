@@ -69,16 +69,21 @@ export default {
   },
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    credentials: true,
+    // baseURL: "http://server:9000",
+    // browserBaseURL: "http://server:9000",
+    // credentials: true,
     proxy: true
   },
   proxy: {
-    '/api/': {
-      target: 'http://localhost:9000',
-      headers: {
-        'X-Forwarded-Host': 'localhost:3000'
+    '/server/': {
+      target: "http://server:9000",
+      pathRewrite: {
+        '^/server/': ''
       }
     }
+  },
+  server: {
+    host: '0.0.0.0'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
