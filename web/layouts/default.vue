@@ -1,5 +1,6 @@
 <template>
-  <v-app dark>
+  <v-app dark class="mx-auto overflow-hidden">
+    <Header />
     <v-main>
       <v-container>
         <nuxt />
@@ -9,29 +10,23 @@
 </template>
 
 <script>
+import Header from "~/components/header/header_main.vue";
+
 export default {
+  components: {
+    Header
+  },
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
     }
   }
 }
 </script>
+<style lang="scss">
+$color-pack: false;
+@import '~vuetify/src/styles/main.sass';
+
+a {
+  text-decoration: none;
+}
+</style>

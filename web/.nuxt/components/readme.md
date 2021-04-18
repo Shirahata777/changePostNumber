@@ -8,3 +8,7 @@ You can directly use them in pages and other components without the need to impo
 
 - `<Logo>` | `<logo>` (components/Logo.vue)
 - `<VuetifyLogo>` | `<vuetify-logo>` (components/VuetifyLogo.vue)
+- `<HeaderMain>` | `<header-main>` (components/header/header_main.vue)
+- `<Form>` | `<form>` (components/form/form.vue)
+- `<LeafletMainMap>` | `<leaflet-main-map>` (components/leaflet/main_map.vue)
+- `<Nav>` | `<nav>` (components/nav/nav.vue)

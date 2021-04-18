@@ -14,7 +14,9 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 import nuxt_plugin_plugin_3222347d from 'nuxt_plugin_plugin_3222347d' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_plugin_e6d6aede from 'nuxt_plugin_plugin_e6d6aede' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_nuxtleaflet_21d71252 from 'nuxt_plugin_nuxtleaflet_21d71252' // Source: ./nuxt-leaflet.js (mode: 'client')
 import nuxt_plugin_axios_6d797313 from 'nuxt_plugin_axios_6d797313' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_veevalidate_346f6561 from 'nuxt_plugin_veevalidate_346f6561' // Source: ../plugins/vee-validate (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -60,7 +62,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"titleTemplate":"%s - web","title":"web","htmlAttrs":{"lang":"ja"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
+    head: {"titleTemplate":"%s - web","title":"web","htmlAttrs":{"lang":"ja"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"script":[{"src":"https:\u002F\u002Fcdn.geolonia.com\u002Fcommunity-geocoder.js"}],"style":[]},
 
     router,
     nuxt: {
@@ -182,8 +184,16 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_plugin_e6d6aede(app.context, inject)
   }
 
+  if (process.client && typeof nuxt_plugin_nuxtleaflet_21d71252 === 'function') {
+    await nuxt_plugin_nuxtleaflet_21d71252(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_axios_6d797313 === 'function') {
     await nuxt_plugin_axios_6d797313(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_veevalidate_346f6561 === 'function') {
+    await nuxt_plugin_veevalidate_346f6561(app.context, inject)
   }
 
   // Lock enablePreview in context
